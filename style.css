@@ -1,0 +1,45 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background: #000;
+}
+.test {
+    height: auto;
+    width: 15vw;
+    position: relative;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.test h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 18px;
+    color: white;
+}
+
+.test img {
+    width: 100%;
+    height: auto;
+}
+
+.child-test {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+
+}
+
+.test:hover .child-test{
+    background: #0b0c0f;
+    opacity: .6;
+    border: 4px solid white;
+
+}
