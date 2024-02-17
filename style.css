@@ -12,6 +12,7 @@ body {
     position: relative;
     border-radius: 12px;
     text-align: center;
+    position: relative;
 }
 
 .test h1 {
@@ -26,7 +27,7 @@ body {
     width: 100%;
     height: auto;
 }
-
+/* what top, right, left, bottom : 0 doing is stretching the container to its maximum size of the parent contianter. means parent container height and width will autometically match with my new div */
 .child-test {
     position: absolute;
     left: 0;
@@ -37,9 +38,11 @@ body {
 
 }
 
+
+/*this hover state meaning if you hover on the parent test container your .child-test class div will have hove effect. if you make your parent container opacity low than it will inheright by children and eventually your text will get the same opacity too. so I created another empty div and used hover effect in that empty div*/
 .test:hover .child-test{
-    background: #0b0c0f;
-    opacity: .6;
+    background: #0b0c0f; /* remember I told you about matching dark color I selected this one you can select any darkish color if your body or parent container has dark color  */
+    opacity: .6; 
     border: 4px solid white;
 
 }
