@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.my-2 {
+    margin: 1rem 0;
+}
+
+body {
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+button {
+    cursor: pointer;
+    padding: 7px;
+    margin-bottom: 0.5rem;
+    background-color: rgba(31, 135, 135, 0.96);
+    border: rgba(21, 108, 108, 0.96);
+    color: white;
+}
+
+.text-center {
+    text-align: center;
+}
