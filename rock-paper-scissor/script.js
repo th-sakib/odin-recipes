@@ -6,6 +6,30 @@
 //   return arr[randomNum];
 // };
 
+const selectionBtns = document.querySelectorAll("button");
+const roundDiv = document.querySelector("#round");
+const humanPick = document.querySelector("#humanPick");
+const computerPick = document.querySelector("#computerPick");
+const subResult = document.querySelector("#subResult");
+const computerScoreDiv = document.querySelector("#computerScoreDiv");
+const humanScoreDiv = document.querySelector("#humanScoreDiv");
+
+let humanScore = 0;
+let computerScore = 0;
+let round = 0;
+
+selectionBtns.forEach((selectionBtn) => {
+  selectionBtn.addEventListener("click", (e) => {
+    if (e.target.id === "rockSelectionBtn") {
+      playRound("rock");
+    } else if (e.target.id === "scissorsSelectionBtn") {
+      playRound("scissors");
+    } else {
+      playRound("paper");
+    }
+  });
+});
+
 const getComputerChoice = () => {
   const randomNum = Math.random();
 
@@ -18,56 +42,81 @@ const getComputerChoice = () => {
   }
 };
 
-const getHumanChoice = () => {
-  const input = prompt("Choice Rock, Paper or scissors");
+const getHumanChoice = (choice) => {
+  // const input = prompt("Choice Rock, Paper or scissors");
 
-  if (input === null) {
-    return getHumanChoice();
-  }
+  // if (input === null) {
+  //   return getHumanChoice();
+  // }
 
-  const choice = input.toLowerCase();
+  // const choice = input.toLowerCase();
 
-  if (choice !== "rock" && choice !== "paper" && choice !== "scissors") {
-    return getHumanChoice();
+  // if (choice !== "rock" && choice !== "paper" && choice !== "scissors") {
+  //   return getHumanChoice();
+  // }
+
+  if (choice === "rock") {
+    humanPick.innerText = "Rock";
+  } else if (choice === "paper") {
+    humanPick.innerText = "Paper";
+  } else {
+    humanPick.innerText = "Scissors";
   }
 
   return choice;
 };
 
-const playGame = () => {
-  let humanScore = 0;
-  let computerScore = 0;
+const playRound = (humanSelection) => {
+  if (round < 5) {
+    const humanChoice = getHumanChoice(humanSelection);
+    const computerChoice = getComputerChoice();
 
-  const playRound = (humanChoice, computerChoice) => {
+    if (computerChoice === "rock") {
+      computerPick.innerText = "Rock";
+    } else if (computerChoice === "paper") {
+      computerPick.innerText = "Paper";
+    } else {
+      computerPick.innerText = "Scissors";
+    }
+
     if (humanChoice === computerChoice) {
-      console.log("tie");
+      subResult.innerText = "Tie";
+      round++;
+      roundDiv.firstElementChild.innerText = round;
+      humanScoreDiv.innerText = humanScore;
+      computerScoreDiv.innerText = computerScore;
     } else if (
       (humanChoice === "rock" && computerChoice === "paper") ||
       (humanChoice === "paper" && computerChoice === "scissors") ||
       (humanChoice === "scissors" && computerChoice === "rock")
     ) {
-      console.log("Computer won");
+      subResult.innerText = "Computer Won";
       computerScore += 1;
+      round++;
+      roundDiv.firstElementChild.innerText = round;
+      humanScoreDiv.innerText = humanScore;
+      computerScoreDiv.innerText = computerScore;
     } else {
-      console.log("Human won");
+      subResult.innerText = "Human won";
       humanScore++;
+      round++;
+      roundDiv.firstElementChild.innerText = round;
+      humanScoreDiv.innerText = humanScore;
+      computerScoreDiv.innerText = computerScore;
     }
-  };
-
-  for (let round = 1; round <= 5; round++) {
-    const computerChoice = getComputerChoice();
-    const humanChoice = getHumanChoice();
-
-    playRound(computerChoice, humanChoice);
   }
 
-  if (humanScore > computerScore) {
-    console.log("Final Result: Human Won");
-  } else if (humanScore < computerScore) {
-    console.log("Final Result: Compuer Won");
-  } else {
-    console.log("Final Result: Tie");
+  if (round === 5) {
+    playGame();
   }
 };
 
-playGame();
+const playGame = () => {
+  if (humanScore > computerScore) {
+    subResult.innerText = "Final Result: Human Won";
+  } else if (humanScore < computerScore) {
+    subResult.innerText = "Final Result: Compuer Won";
+  } else {
+    subResult.innerText = "Final Result: Tie";
+  }
+};
